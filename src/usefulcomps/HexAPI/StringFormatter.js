@@ -1,20 +1,38 @@
-// import react from 'react';
+// // import react from 'react';
 
-export const StringFormatter = (queryStr,queryArr) => {
-    String.prototype.format = function() {
-        var formatted = this;
-        for( var arg in arguments ) {
-            formatted = formatted.replace("'{" + arg + "}'", "N'"+arguments[arg].replaceAll("'","''")+"'");
+// export const StringFormatter = (queryStr,queryArr) => {
+//     String.prototype.format = function() {
+//         var formatted = this;
+//         for( var arg in arguments ) {
+//             formatted = formatted.replace("'{" + arg + "}'", "N'"+arguments[arg].replaceAll("'","''")+"'");
+//         }
+//         return formatted;
+//     };
+
+//     var str = queryStr.format(...queryArr)
+//     return str
+// }
+
+// export const brTagReplacer = (str) => {
+//     var string = str;
+//     string = string.replace(/<br\s*\/?>/gi,'<br/>');
+//     return string;
+// }
+
+
+
+export const stringFormatter = (queryStr, queryArr) => {
+    const formatString = (str, ...args) => {
+        let formatted = str;
+        for (let i = 0; i < args.length; i++) {
+            formatted = formatted.replace(`'{${i}}'`, `N'${args[i].replaceAll("'", "''")}'`);
         }
         return formatted;
     };
 
-    var str = queryStr.format(...queryArr)
-    return str
-}
+    return formatString(queryStr, ...queryArr);
+};
 
 export const brTagReplacer = (str) => {
-    var string = str;
-    string = string.replace(/<br\s*\/?>/gi,'<br/>');
-    return string;
-}
+    return str.replace(/<br\s*\/?>/gi, '<br/>');
+};
