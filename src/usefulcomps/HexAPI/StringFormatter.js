@@ -21,7 +21,7 @@
 
 
 
-export const stringFormatter = (queryStr, queryArr) => {
+export const StringFormatter = (queryStr, queryArr) => {
     const formatString = (str, ...args) => {
         let formatted = str;
         for (let i = 0; i < args.length; i++) {
